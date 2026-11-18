@@ -1,0 +1,13 @@
+{
+  "name": "acxiom-crm-mern",
+  "version": "1.0.0",
+  "description": "AcxiomCRM Enterprise System - MERN Stack Edition",
+  "scripts": {
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start",
+    "seed": "npm --prefix server run seed"
+  }
+}
+
