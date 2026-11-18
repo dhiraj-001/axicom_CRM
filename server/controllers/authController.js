@@ -8,6 +8,16 @@ const generateToken = (id) => {
   });
 };
 
+const getCookieOptions = () => {
+  const isProduction = process.env.NODE_ENV === 'production';
+  return {
+    httpOnly: true,
+    secure: isProduction,
+    maxAge: 8 * 60 * 60 * 1000,
+    sameSite: isProduction ? 'none' : 'lax'
+  };
+};
+
 exports.register = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
@@ -38,12 +48,7 @@ exports.register = async (req, res) => {
 
     await logAudit(req, 'Register', 'Auth', user._id, null, `Registered with role: ${user.role}`);
 
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 8 * 60 * 60 * 1000,
-      sameSite: 'lax'
-    });
+    res.cookie('token', token, getCookieOptions());
 
     res.status(201).json({
       success: true,
@@ -101,12 +106,7 @@ exports.login = async (req, res) => {
 
     await logAudit(req, 'Login', 'Auth', user._id, null, 'User logged in successfully');
 
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 8 * 60 * 60 * 1000,
-      sameSite: 'lax'
-    });
+    res.cookie('token', token, getCookieOptions());
 
     res.json({
       success: true,
@@ -136,7 +136,7 @@ exports.logout = async (req, res) => {
   if (req.user) {
     await logAudit(req, 'Logout', 'Auth', req.user._id, null, 'User logged out');
   }
-  res.clearCookie('token');
+  res.clearCookie('token', getCookieOptions());
   res.json({ success: true, message: 'Logged out successfully.' });
 };
 
