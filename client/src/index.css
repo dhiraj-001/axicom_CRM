@@ -1,0 +1,157 @@
+:root {
+  --crm-sidebar-width: 250px;
+  --crm-sidebar-bg: #0f172a;
+  --crm-sidebar-hover: #1e293b;
+  --crm-sidebar-text: #94a3b8;
+  --crm-sidebar-active: #38bdf8;
+  --crm-bg: #f8fafc;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--crm-bg);
+  color: #334155;
+}
+
+.crm-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.crm-sidebar {
+  width: var(--crm-sidebar-width);
+  background-color: var(--crm-sidebar-bg);
+  color: var(--crm-sidebar-text);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.crm-brand {
+  padding: 1.25rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  border-bottom: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.crm-nav {
+  padding: 1rem 0;
+  flex-grow: 1;
+}
+
+.crm-nav-header {
+  padding: 0.5rem 1.5rem 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+.crm-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1.5rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all 0.15s ease-in-out;
+}
+
+.crm-nav-item:hover {
+  background-color: var(--crm-sidebar-hover);
+  color: #ffffff;
+}
+
+.crm-nav-item.active {
+  background-color: #1e293b;
+  color: var(--crm-sidebar-active);
+  border-left-color: var(--crm-sidebar-active);
+}
+
+.crm-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.crm-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.85rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.crm-body {
+  padding: 1.75rem 2rem;
+  flex-grow: 1;
+}
+
+.kpi-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.kpi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.kpi-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.kpi-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.crm-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  margin-bottom: 1.5rem;
+}
+
+.crm-card-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.crm-card-body {
+  padding: 1.25rem;
+}
+
