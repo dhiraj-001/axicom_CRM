@@ -4,6 +4,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const path = require('path');
+const https = require('https');
 const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/authRoutes');
@@ -73,4 +74,16 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`AcxiomCRM Server running on port ${PORT}`);
+
+  const keepAliveUrl = process.env.RENDER_EXTERNAL_URL || process.env.SERVER_URL || 'https://axicom-crm.onrender.com';
+  if (process.env.NODE_ENV === 'production' && keepAliveUrl) {
+    const pingInterval = 12 * 60 * 1000;
+    setInterval(() => {
+      https.get(`${keepAliveUrl}/api/health`, (res) => {
+        console.log(`Keep-alive ping to ${keepAliveUrl} returned status ${res.statusCode}`);
+      }).on('error', (err) => {
+        console.error(`Keep-alive ping error: ${err.message}`);
+      });
+    }, pingInterval);
+  }
 });
